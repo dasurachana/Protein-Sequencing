@@ -32,8 +32,23 @@ Parameters: str ; int
 Returns: list of strs
 '''
 def dnaToRna(dna, startIndex):
-    return
-
+    #print(dna)
+    dna=dna.replace("T","U")
+    new_dna=[]
+    result=[]
+    stop_Code=["UAA","UAG","UGA"]
+    for i in range(startIndex,len(dna),3):
+        new_dna.append(dna[i:i+3])
+    #print(new_dna)
+    #if new_dna[startIndex]=="ATG":
+    for each in new_dna:
+        if each not in stop_Code:
+             result.append(each)
+        else:
+            result.append(each)
+            break
+    
+    return result
 
 '''
 makeCodonDictionary(filename)
@@ -192,6 +207,7 @@ def runFullProgram():
 # This code runs the test cases to check your work
 if __name__ == "__main__":
     test.testReadFile()
+    test.testDnaToRna()
     """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
