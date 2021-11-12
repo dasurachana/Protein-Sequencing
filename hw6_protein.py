@@ -6,6 +6,7 @@ Roll Number:2021501004
 
 import hw6_protein_tests as test
 
+
 project = "Protein" # don't edit this
 
 ### WEEK 1 ###
@@ -58,7 +59,17 @@ Returns: dict mapping strs to strs
 '''
 def makeCodonDictionary(filename):
     import json
-    return
+    f=open(filename,"r")
+    result_Dict={}
+    j=json.load(f)
+    #j=j.replace("T","U")
+    #print(j)
+    for key,value in j.items():
+        for each in value:
+            each=each.replace("T","U")
+            result_Dict[each]=key
+    f.close()
+    return result_Dict
 
 
 '''
@@ -208,6 +219,7 @@ def runFullProgram():
 if __name__ == "__main__":
     test.testReadFile()
     test.testDnaToRna()
+    test.testMakeCodonDictionary()
     """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
