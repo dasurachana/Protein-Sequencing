@@ -233,6 +233,22 @@ Parameters: 2D list of strs ; 2D list of values
 Returns: None
 '''
 def displayTextResults(commonalities, differences):
+    print(commonalities)
+    #protein=""
+    print("\n","These are the common proteins","\n")
+    for each in commonalities:
+        for i in each:
+            if i!="Start" and i!="Stop":
+                print(i,"\n")
+   
+    print("\n","These are the amino acids that occurred at the most different rates","\n")
+    #print(differences)
+    for each_List in differences:
+        a_number1 = each_List[1]
+        a_number2 = each_List[2]
+        percentage1 = "{:.2%}".format(a_number1)
+        percentage2 = "{:.2%}".format(a_number2)
+        print(each_List[0],":",percentage1,"in Seq1,",percentage2,"in Seq2")
     return
 
 
@@ -302,29 +318,29 @@ def runFullProgram():
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testReadFile()
-    test.testDnaToRna()
-    test.testMakeCodonDictionary()
-    test.testGenerateProtein()
-    test.testSynthesizeProteins()
-    test.testCommonProteins()
-    test.testCombineProteins()
-    test.testAminoAcidDictionary()
-    test.testFindAminoAcidDifferences()
-    """
+    # test.testReadFile()
+    # test.testDnaToRna()
+    # test.testMakeCodonDictionary()
+    # test.testGenerateProtein()
+    # test.testSynthesizeProteins()
+    # test.testCommonProteins()
+    # test.testCombineProteins()
+    # test.testAminoAcidDictionary()
+    # test.testFindAminoAcidDifferences()
+    
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
     print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     runWeek1()
-    """
+
 
     ## Uncomment these for Week 2 ##
-    """
+    
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     runWeek2()
-    """
+    
 
     ## Uncomment these for Week 3 ##
     """
