@@ -5,7 +5,8 @@ Roll Number:2021501004
 """
 
 import hw6_protein_tests as test
-
+import numpy
+import matplotlib
 
 project = "Protein" # don't edit this
 
