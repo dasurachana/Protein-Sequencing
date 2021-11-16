@@ -234,13 +234,16 @@ Parameters: 2D list of strs ; 2D list of values
 Returns: None
 '''
 def displayTextResults(commonalities, differences):
-    print(commonalities)
+    #print(commonalities)
     #protein=""
     print("\n","These are the common proteins","\n")
-    for each in commonalities:
+    
+    for each in sorted(commonalities):
+        temp=""
         for i in each:
             if i!="Start" and i!="Stop":
-                print(i,"\n")
+               temp=temp+"-"+i 
+        print(temp.strip("-"),"\n")
    
     print("\n","These are the amino acids that occurred at the most different rates","\n")
     #print(differences)
@@ -356,6 +359,16 @@ Parameters: no parameters
 Returns: None
 '''
 def runFullProgram():
+    human_Proteins=synthesizeProteins("data\human_p53.txt","data\codon_table.json")
+    elephant_Proteins=synthesizeProteins("data\elephant_p53.txt","data\codon_table.json")
+    commonalities=commonProteins(human_Proteins,elephant_Proteins)
+    differences=findAminoAcidDifferences(human_Proteins,elephant_Proteins,0.005)
+    displayTextResults(commonalities,differences)
+    labels=makeAminoAcidLabels(human_Proteins,elephant_Proteins)
+    f1=setupChartData(labels,human_Proteins)
+    f2=setupChartData(labels,elephant_Proteins)
+    edges=makeEdgeList(labels,differences)
+    createChart(labels,f1, "Human", f2, "Elephant", edgeList=edges)
     return
 
 
@@ -373,24 +386,24 @@ if __name__ == "__main__":
     # test.testAminoAcidDictionary()
     # test.testFindAminoAcidDifferences()
     
-    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    test.week1Tests()
-    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    runWeek1()
+    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    # test.week1Tests()
+    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    # runWeek1()
 
 
-    ## Uncomment these for Week 2 ##
+    # ## Uncomment these for Week 2 ##
     
-    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
-    print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    runWeek2()
+    # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    # test.week2Tests()
+    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    # runWeek2()
     
 
-    ## Uncomment these for Week 3 ##
+    # ## Uncomment these for Week 3 ##
     
-    print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
-    test.week3Tests()
-    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    # print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
+    # test.week3Tests()
+    # print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     runFullProgram()
     
