@@ -1,7 +1,7 @@
 """
 Protein Sequencing Project
-Name:
-Roll Number:
+Name: Rachana
+Roll Number:2021501004
 """
 
 import hw6_protein_tests as test
@@ -17,7 +17,12 @@ Parameters: str
 Returns: str
 '''
 def readFile(filename):
-    return
+    f=open(filename,"r")
+    text=f.read()
+    #print(text)
+    f.close()
+    text=text.replace("\n","")
+    return text
 
 
 '''
@@ -186,10 +191,13 @@ def runFullProgram():
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
+    test.testReadFile()
+    """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
     print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     runWeek1()
+    """
 
     ## Uncomment these for Week 2 ##
     """
