@@ -134,7 +134,13 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: 2D list of strs
 '''
 def commonProteins(proteinList1, proteinList2):
-    return
+    unique_Proteins=[]
+    for each in proteinList1:
+        #print(each)
+        if each in proteinList2 and each not in unique_Proteins:
+            unique_Proteins.append(each)
+
+    return unique_Proteins
 
 
 '''
@@ -248,6 +254,7 @@ if __name__ == "__main__":
     test.testMakeCodonDictionary()
     test.testGenerateProtein()
     test.testSynthesizeProteins()
+    test.testCommonProteins()
     """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
