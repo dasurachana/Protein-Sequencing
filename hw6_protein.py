@@ -181,7 +181,49 @@ Parameters: 2D list of strs ; 2D list of strs ; float
 Returns: 2D list of values
 '''
 def findAminoAcidDifferences(proteinList1, proteinList2, cutoff):
-    return
+    three_Element_List=[]
+    #print(proteinList1)
+    proteins_List1=combineProteins(proteinList1)
+    aminoAcid_Dict1=aminoAcidDictionary(proteins_List1)
+
+    proteins_List2=combineProteins(proteinList2)
+    aminoAcid_Dict2=aminoAcidDictionary(proteins_List2)
+    #print(cutoff)
+
+    list1_Difference=list(set(proteins_List2) - set(proteins_List1))
+    list2_Difference=list(set(proteins_List1) - set(proteins_List2))
+
+    #print(list2_Difference)
+    for each1 in list1_Difference:
+        aminoAcid_Dict1[each1]=0
+    for each2 in list2_Difference:
+        aminoAcid_Dict2[each2]=0
+        #print(aminoAcid_Dict2)
+    
+    #frequencies
+    length1=len(proteins_List1)
+    aminoAcid_Freq1={}
+    for each_acid1 in aminoAcid_Dict1:
+        aminoAcid_Freq1[each_acid1]=aminoAcid_Dict1[each_acid1]/length1
+
+    length2=len(proteins_List2)
+    aminoAcid_Freq2={}
+    for each_acid2 in aminoAcid_Dict2:
+        aminoAcid_Freq2[each_acid2]=aminoAcid_Dict2[each_acid2]/length2
+    
+    #result
+    for key,value in aminoAcid_Dict1.items():
+        innerList=[]
+        if key!="Start" and key!="Stop":
+            if key in aminoAcid_Dict2.keys():
+                diff_Freq=abs(aminoAcid_Freq1[key]-aminoAcid_Freq2[key])
+                if diff_Freq>cutoff:
+                    innerList.append(key)
+                    innerList.append(aminoAcid_Freq1[key])
+                    innerList.append(aminoAcid_Freq2[key])
+                    three_Element_List.append(innerList)
+
+    return three_Element_List
 
 
 '''
@@ -268,6 +310,7 @@ if __name__ == "__main__":
     test.testCommonProteins()
     test.testCombineProteins()
     test.testAminoAcidDictionary()
+    test.testFindAminoAcidDifferences()
     """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
