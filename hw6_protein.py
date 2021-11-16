@@ -150,7 +150,13 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def combineProteins(proteinList):
-    return
+    aminoAcids_List=[]
+    for each in proteinList:
+        for i in each:
+            aminoAcids_List.append(i)
+    #print(aminoAcids_List)
+
+    return aminoAcids_List
 
 
 '''
@@ -255,6 +261,7 @@ if __name__ == "__main__":
     test.testGenerateProtein()
     test.testSynthesizeProteins()
     test.testCommonProteins()
+    test.testCombineProteins()
     """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
