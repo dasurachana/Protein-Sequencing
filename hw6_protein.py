@@ -271,7 +271,21 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: list of strs
 '''
 def makeAminoAcidLabels(proteinList1, proteinList2):
-    return
+    #print(proteinList1)
+    amino_List1=combineProteins(proteinList1)
+    list1=aminoAcidDictionary(amino_List1)
+    amino_List2=combineProteins(proteinList2)
+    list2=aminoAcidDictionary(amino_List2)
+
+    #print(list1)
+    label1=list(list1.keys())
+    label2=list(list2.keys())
+
+    unique_List=list(set(label2)-set(label1))
+    sorted_Aminoacid_List=sorted(label1+unique_List)
+
+
+    return sorted_Aminoacid_List
 
 
 '''
@@ -344,9 +358,9 @@ if __name__ == "__main__":
     
 
     ## Uncomment these for Week 3 ##
-    """
+    
     print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
     test.week3Tests()
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     runFullProgram()
-    """
+    
